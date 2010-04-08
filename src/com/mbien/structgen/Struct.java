@@ -31,6 +31,8 @@
 package com.mbien.structgen;
 
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
@@ -38,7 +40,12 @@ import java.lang.annotation.Target;
  * @author Michael Bien
  */
 @Target(value = {ElementType.FIELD, ElementType.LOCAL_VARIABLE})
+@Retention(value = RetentionPolicy.SOURCE)
 public @interface Struct {
+
+    /**
+     * Relative path to the header file.
+     */
     String header();
 
     /**

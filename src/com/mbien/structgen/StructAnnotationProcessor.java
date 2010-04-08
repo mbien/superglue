@@ -72,8 +72,6 @@ public class StructAnnotationProcessor extends AbstractProcessor {
 
     private final static Set<String> generatedStructs = new HashSet<String>();
 
-    public StructAnnotationProcessor() {
-    }
 
     @Override
     public void init(ProcessingEnvironment processingEnv) {
