@@ -49,6 +49,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
+import javax.tools.Diagnostic.Kind;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 
@@ -116,9 +117,7 @@ public class StructAnnotationProcessor extends AbstractProcessor {
                     headerFile = new File(root + separator + header.toUri());
                 }
                 
-                System.out.println();
-                System.out.println(" - - - - > "+header.toUri());
-                System.out.println();
+                System.out.println("processing header: "+header.toUri());
 
                 generateStructBinding(element, struct, root, pakage, headerFile);
             } catch (IOException ex) {
@@ -136,6 +135,7 @@ public class StructAnnotationProcessor extends AbstractProcessor {
         String structName   = struct.name().equals(DEFAULT) ? declaredType : struct.name();
 
         if(generatedStructs.contains(structName)) {
+            messager.printMessage(Kind.WARNING, "struct "+structName+" already defined elsewhere.", element);
             return;
         }
 
